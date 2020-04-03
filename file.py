@@ -23,7 +23,7 @@ def select_player():
         pnum = '二'
          
 def guess():
-            print('第%s個人猜' % pnum)
+        print('第%s個人猜' % pnum)
         print(riddle + ':')
         ans = input()
         if ans == Answers[riddle_num]:
@@ -35,40 +35,45 @@ def guess():
             del Answers[riddle_num]
             break
 
+        if ans == "skip":
+            print("player%s has decided to skip" % pnum)
+            if pnum == '一':
+                print("第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
+                confirm = input()
+            else:
+                print('第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
+                if confirm == "skip":
+                    print("executing skip...")
+                    break     
+        else:
+            print('你猜錯了！')
+            counter += 1
+            
+            
+def winner():    
+    if p1 == p2:
+        print('沒有人輸或贏')
+    elif p1 > p2:
+        print('第一個人贏了')
+    else:
+        print('第二個人贏了')
+            
 print('這是個猜謎語的遊戲')
 print('我們有30個謎語')
 while True:
-    
+    break
     
     while True:
            
 
         #checks for correct answer and switches between two people
 
-        elif ans == "skip":
-            print("player%s has decided to skip" % pnum)
-            if counter % 2 == 0:
-                print("player 2, type skip to confirm or type anything else to go back to guessing")
-                confirm = input()
-                if confirm == "skip":
-                    print("executing skip...")
-                    break
-                else:
-                    pass
+        
                    
                 
-            else:
-                print("player 1, type skip to confirm")
-        else:
-            print('你猜錯了！')
-            counter += 1
+            
+
 #prints whether p1 or p2 won, lost, or tied
-if p1 == p2:
-    print('沒有人輸或贏')
-elif p1 > p2:
-    print('第一個人贏了')
-else:
-    print('第二個人贏了')
 
     
     
