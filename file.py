@@ -18,31 +18,32 @@ def select_player():
         pnum = '二'
          
 def guess():
-        print('第%s個人猜' % pnum)
-        print(riddle + ':')
-        ans = input()
-        if ans == Answers[riddle_num]:
-            print('你猜對了！')
-            if counter % 2 == 0:
-                p1 += 1
-            else:
-                p2 += 1
-            del Answers[riddle_num]
-            break
-
-        if ans == "skip":
-            print("player%s has decided to skip" % pnum)
-            if pnum == '一':
-                print("第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
-                confirm = input()
-            else:
-                print('第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
-                if confirm == "skip":
-                    print("executing skip...")
-                    break     
+    print('第%s個人猜' % pnum)
+    print(riddle + ':')
+    ans = input()
+    if ans == Answers[riddle_num]:
+        print('你猜對了！')
+        if counter % 2 == 0:
+            p1 += 1
         else:
-            print('你猜錯了！')
-            counter += 1
+            p2 += 1
+        del Answers[riddle_num]
+        break
+
+    if ans == "skip":
+        print("player%s has decided to skip" % pnum)
+        if pnum == '一':
+            print("第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
+            confirm = input()
+        else:
+            print('第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
+            confirm = input()
+            if confirm == "skip":
+                print("executing skip...")
+                break     
+    else:
+        print('你猜錯了！')
+        counter += 1
             
             
 def winner():    
@@ -53,16 +54,25 @@ def winner():
     else:
         print('第二個人贏了')
             
-print('這是個猜謎語的遊戲')
-print('我們有30個謎語')
-while True:
-    break
-    
+            
+            
+main():
+    print('這是個猜謎語的遊戲')
+    print('我們有30個謎語')
     while True:
-           
-
-        #checks for correct answer and switches between two people
-
+        end_game()
+        
+        select_riddle()
+        
+        
+        
+        
+        while True:
+            select_player()
+            
+            guess()
+            
+    winner()
         
                    
                 
@@ -89,7 +99,8 @@ if __main__ == '__name__':
     p1 = 0
     p2 = 0
     counter = 0
-    
+
+    main()
     
     
     
