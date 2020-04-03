@@ -17,6 +17,16 @@ p1 = 0
 p2 = 0
 counter = 0
 
+def skip(var):
+    print("one player has decided to skip")
+    print("other player, type in skip to confirm skip")
+    confirm = input()
+    if confirm == "skip":
+        del Answers[riddle_num]
+        break
+    else:
+        print("returning to the riddle")
+    
 
 print('這是個猜謎語的遊戲')
 print('我們有30個謎語')
