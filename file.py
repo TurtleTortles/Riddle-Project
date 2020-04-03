@@ -53,6 +53,20 @@ while True:
             #makes sure that the riddle's index and the answer's index is the same
             del Answers[riddle_num]
             break
+        elif ans == "skip":
+            print("player%s has decided to skip" % pnum)
+            if counter % 2 == 0:
+                print("player 2, type skip to confirm or type anything else to go back to guessing")
+                confirm = input()
+                if confirm == "skip":
+                    print("executing skip...")
+                    break
+                else:
+                    pass
+                   
+                
+            else:
+                print("player 1, type skip to confirm")
         else:
             print('你猜錯了！')
             counter += 1
