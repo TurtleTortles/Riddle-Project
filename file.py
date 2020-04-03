@@ -39,7 +39,7 @@ while True:
             pnum = '二'
             
 
-
+        #checks for correct answer and switches between two people
         print('第%s個人猜' % pnum)
         print(riddle + ':')
         ans = input()
@@ -56,6 +56,7 @@ while True:
         else:
             print('你猜錯了！')
             counter += 1
+#prints whether p1 or p2 won, lost, or tied
 if p1 == p2:
     print('沒有人輸或贏')
 elif p1 > p2:
