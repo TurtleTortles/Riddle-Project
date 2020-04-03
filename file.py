@@ -1,5 +1,7 @@
 import random
 
+
+
 def end_game_check():
     if len(sim_riddles) == 0:
     print('你都猜完了！')
@@ -10,13 +12,14 @@ def select_riddle():
     riddle_num = random.randint(0, len(sim_riddles) - 1)
     riddle = sim_riddles.pop(riddle_num)
     
-def select_player():
+def select_player(counter):
     if counter % 2 == 0:
         pnum = '一'
     else:
         pnum = '二'
+    return pnum
          
-def guess():
+def guess(p1, p2, pnum, Answers, riddle_num):
     print('第%s個人猜' % pnum)
     print(riddle + ':')
     ans = input()
@@ -39,10 +42,11 @@ def guess():
             confirm = input()
             if confirm == "skip":
                 print("executing skip...")
-                break     
+                break
     else:
         print('你猜錯了！')
         counter += 1
+    return p1 and p2
                         
 def winner():    
     if p1 == p2:
@@ -55,6 +59,11 @@ def winner():
 main():
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
+    mybool = False
+    mybool2 = False
+    p1 = 0
+    p2 = 0
+    total_points = []
     while True:
         end_game_check()
         
@@ -65,7 +74,8 @@ main():
         
         while True:
             select_player()
-            guess()            
+            points = guess(p1, p2)
+            pointlist = list(points)
     winner()
     
 if __main__ == '__name__':
