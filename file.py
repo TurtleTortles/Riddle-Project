@@ -13,10 +13,9 @@ sim_riddles = ['一月七日,猜一个字', '一加一,猜一字', '一半儿,�
 '一人一张口,口下长只手,猜一字', '一人在内,猜一字', '一人挑两小人,猜一字' ]
 Answers = ['脂', '王', '臼', '汁', '白', '多', '佳', '旨', '吉', '兽', '面', '生', '器', '必', '府', '汕', '秋', '货', '花', '晶',
 '碧', '白', '鸠', '旭', '轨', '杰', '大', '拿', '肉', '夹']
-
 p1 = 0
 p2 = 0
-
+counter = 0
 
 
 print('這是個猜謎語的遊戲')
@@ -37,14 +36,32 @@ while True:
     #print(riddle_num)
     #print(Answers[riddle_num])
     while True:
-        print('第一個人猜')
+        if counter % 2 == 0:
+            pnum = '一'
+        else:
+            pnum = '二'
+            
+
+
+        print('第%s個人猜' % pnum)
         print(riddle + ':')
         ans = input()
         if ans == Answers[riddle_num]:
             print('你猜對了！')
-            p1 += 1
+            if counter % 2 == 0:
+                p1 += 1
+            else:
+                p2 += 1
+                
             #makes sure that the riddle's index and the answer's index is the same
             del Answers[riddle_num]
             break
         else:
             print('你猜錯了！')
+            counter += 1
+if p1 == p2:
+    print('沒有人輸或贏')
+elif p1 > p2:
+    print('第一個人贏了')
+else:
+    print('第二個人贏了')
