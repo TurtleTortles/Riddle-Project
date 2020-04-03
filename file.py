@@ -6,16 +6,11 @@ def end_game():
     print('你都猜完了！')
     break
 
-    
-    
-    
 #selects the riddle and makes sure there are no repeat riddles
 def select_riddle():
     riddle_num = random.randint(0, len(sim_riddles) - 1)
     riddle = sim_riddles.pop(riddle_num)
     
-    
-
 def select_player():
     if counter % 2 == 0:
         pnum = '一'
