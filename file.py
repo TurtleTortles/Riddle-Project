@@ -32,9 +32,6 @@ while True:
     riddle_num = random.randint(0, len(sim_riddles) - 1)
     #selects the riddle based on the number .pop() for no repeats
     riddle = sim_riddles.pop(riddle_num)
-    #next 2 lines is debug code
-    #print(riddle_num)
-    #print(Answers[riddle_num])
     while True:
         if counter % 2 == 0:
             pnum = '一'
