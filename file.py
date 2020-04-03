@@ -1,6 +1,6 @@
 import random
 
-def end_game():
+def end_game_check():
     if len(sim_riddles) == 0:
     print('你都猜完了！')
     break
@@ -56,7 +56,7 @@ main():
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     while True:
-        end_game()
+        end_game_check()
         
         select_riddle()
         
