@@ -1,6 +1,5 @@
 import random
 
-
 def end_game():
     if len(sim_riddles) == 0:
     print('你都猜完了！')
@@ -44,8 +43,7 @@ def guess():
     else:
         print('你猜錯了！')
         counter += 1
-            
-            
+                        
 def winner():    
     if p1 == p2:
         print('沒有人輸或贏')
@@ -53,8 +51,6 @@ def winner():
         print('第一個人贏了')
     else:
         print('第二個人贏了')
-            
-            
             
 main():
     print('這是個猜謎語的遊戲')
@@ -69,19 +65,8 @@ main():
         
         while True:
             select_player()
-            
-            guess()
-            
+            guess()            
     winner()
-        
-                   
-                
-            
-
-#prints whether p1 or p2 won, lost, or tied
-
-    
-    
     
 if __main__ == '__name__':
     sim_riddles = ['一月七日,猜一个字', '一加一,猜一字', '一半儿,猜一个字',
