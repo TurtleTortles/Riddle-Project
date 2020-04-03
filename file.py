@@ -1,22 +1,28 @@
 import random
 
-def end_game_check():
-    if len(sim_riddles) == 0:
+def end_game_check(riddles):
+    if len(riddles) == 0:
     print('你都猜完了！')
-    break
+    return False
 
 #selects the riddle and makes sure there are no repeat riddles
 def select_riddle():
     riddle_num = random.randint(0, len(sim_riddles) - 1)
     riddle = sim_riddles.pop(riddle_num)
     
-def select_player():
+def select_player(counter):
+    pnum = ''
     if counter % 2 == 0:
         pnum = '一'
     else:
         pnum = '二'
-         
-def guess():
+    return pnum
+            
+            
+            
+def guess(pnum, riddle, riddle_num):
+    p1 = 0
+    p2 = 0
     print('第%s個人猜' % pnum)
     print(riddle + ':')
     ans = input()
@@ -53,22 +59,6 @@ def winner():
         print('第二個人贏了')
             
 main():
-    print('這是個猜謎語的遊戲')
-    print('我們有30個謎語')
-    while True:
-        end_game_check()
-        
-        select_riddle()
-        
-        
-        
-        
-        while True:
-            select_player()
-            guess()            
-    winner()
-    
-if __main__ == '__name__':
     sim_riddles = ['一月七日,猜一个字', '一加一,猜一字', '一半儿,猜一个字',
     '一字十三点,难在如何点,猜一个字', '一百减一,猜一个字', '一夜又一夜,猜一字',
     '一个人搬两个土,猜一个字', '一个礼拜,猜一个字', '一家十一口,猜一字',
@@ -84,6 +74,25 @@ if __main__ == '__name__':
     p1 = 0
     p2 = 0
     counter = 0
+    my_bool = True
+    
+    print('這是個猜謎語的遊戲')
+    print('我們有30個謎語')
+    while my_bool:
+        end_game_check()
+        
+        select_riddle()
+        
+        
+        
+        
+        while my_bool2:
+            select_player(counter)
+            guess()            
+    winner()
+    
+if __main__ == '__name__':
+    
 
     main()
     
