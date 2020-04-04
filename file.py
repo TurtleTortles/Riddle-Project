@@ -10,6 +10,7 @@ def select_riddle():
     riddle_num = random.randint(0, len(sim_riddles) - 1)
     riddle = sim_riddles.pop(riddle_num)
     
+    
 def select_player(counter):
     pnum = ''
     if counter % 2 == 0:
@@ -50,7 +51,7 @@ def guess(pnum, riddle, riddle_num):
         print('你猜錯了！')
         counter += 1
                         
-def winner():    
+def winner(p1, p2):
     if p1 == p2:
         print('沒有人輸或贏')
     elif p1 > p2:
@@ -89,7 +90,7 @@ main():
         while my_bool2:
             select_player(counter)
             guess()
-        my_bool = end_game_check()
+        my_bool = end_game_check(sim_riddles)
     winner()
     
 if __main__ == '__name__':
