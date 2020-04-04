@@ -79,7 +79,7 @@ main():
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     while my_bool:
-        end_game_check()
+
         
         select_riddle()
         
@@ -88,7 +88,8 @@ main():
         
         while my_bool2:
             select_player(counter)
-            guess()            
+            guess()
+        my_bool = end_game_check()
     winner()
     
 if __main__ == '__name__':
