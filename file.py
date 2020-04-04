@@ -2,14 +2,14 @@ import random
 
 def end_game_check(riddles):
     if len(riddles) == 0:
-    print('你都猜完了！')
-    return False
+        print('你都猜完了！')
+        return False
 
 #selects the riddle and makes sure there are no repeat riddles
-def select_riddle():
-    riddle_num = random.randint(0, len(sim_riddles) - 1)
-    riddle = sim_riddles.pop(riddle_num)
-    
+def select_riddle(riddle_lst):
+    riddle_num = random.randint(0, len(riddle_lst) - 1)
+    riddle = riddlelst.pop(riddle_num)
+    return riddle, riddle_num
     
 def select_player(counter):
     pnum = ''
@@ -82,14 +82,14 @@ main():
     while my_bool:
 
         
-        select_riddle()
-        
+        select_riddle(sim_riddles)
         
         
         
         while my_bool2:
-            select_player(counter)
+            player = select_player(counter)
             guess()
+            
         my_bool = end_game_check(sim_riddles)
     winner()
     
