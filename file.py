@@ -21,7 +21,7 @@ def select_player(counter):
             
             
             
-def guess(pnum, riddle, riddle_num):
+def guess(pnum, riddle, riddle_num, player, Answers):
     p1 = 0
     p2 = 0
     print('第%s個人猜' % pnum)
@@ -29,27 +29,28 @@ def guess(pnum, riddle, riddle_num):
     ans = input()
     if ans == Answers[riddle_num]:
         print('你猜對了！')
-        if counter % 2 == 0:
+        if player % 2 == 0:
             p1 += 1
         else:
             p2 += 1
         del Answers[riddle_num]
-        break
+        return False
 
     if ans == "skip":
         print("player%s has decided to skip" % pnum)
         if pnum == '一':
-            print("第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
+            print("第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
             confirm = input()
         else:
-            print('第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
+            print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
             confirm = input()
             if confirm == "skip":
                 print("executing skip...")
-                break     
+                return False     
     else:
         print('你猜錯了！')
-        counter += 1
+        return counter + 1
+        
                         
 def winner(p1, p2):
     if p1 == p2:
@@ -72,8 +73,8 @@ main():
     '一人一张口,口下长只手,猜一字', '一人在内,猜一字', '一人挑两小人,猜一字' ]
     Answers = ['脂', '王', '臼', '汁', '白', '多', '佳', '旨', '吉', '兽', '面', '生', '器', '必', '府', '汕', '秋', '货', '花', '晶',
     '碧', '白', '鸠', '旭', '轨', '杰', '大', '拿', '肉', '夹']
-    p1 = 0
-    p2 = 0
+    pscore1 = 0
+    pscore2 = 0
     counter = 0
     my_bool = True
     
@@ -81,14 +82,14 @@ main():
     print('我們有30個謎語')
     while my_bool:
 
-        
         riddle_val = select_riddle(sim_riddles)
         riddle_str = riddle_val[0]
         riddle_int = riddle_val[1]
         
         while my_bool2:
+            
             player = select_player(counter)
-            guess()
+            guess(player, riddle_str, riddle_int, player)
             
         my_bool = end_game_check(sim_riddles)
     winner()
