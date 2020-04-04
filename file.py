@@ -82,9 +82,9 @@ main():
     while my_bool:
 
         
-        select_riddle(sim_riddles)
-        
-        
+        riddle_val = select_riddle(sim_riddles)
+        riddle_str = riddle_val[0]
+        riddle_int = riddle_val[1]
         
         while my_bool2:
             player = select_player(counter)
