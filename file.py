@@ -56,7 +56,7 @@ def winner():
     else:
         print('第二個人贏了')
             
-main():
+def main():
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     mybool = False
