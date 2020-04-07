@@ -6,7 +6,8 @@ def end_game_check(riddles):
     if len(riddles) == 0:
         print('你都猜完了！')
         return False
-
+    else:
+        return True
 #selects the riddle and makes sure there are no repeat riddles
 def select_riddle(riddle_lst):
     riddle_num = random.randint(0, len(riddle_lst) - 1)
