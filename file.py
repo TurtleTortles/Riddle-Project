@@ -41,7 +41,7 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
         return False, counter, p1, p2
 
     if ans == "skip":
-        print("player%s has decided to skip" % pnum)
+        print("第%s選擇跳過這個問題" % pnum)
         if pnum == '一':
             print("第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
             confirm = input()
@@ -116,4 +116,3 @@ if __name__ == '__main__':
 
 
     main()
-
