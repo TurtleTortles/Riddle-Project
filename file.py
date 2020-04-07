@@ -1,5 +1,7 @@
 import random
 
+
+
 def end_game_check(riddles):
     if len(riddles) == 0:
         print('你都猜完了！')
@@ -8,9 +10,9 @@ def end_game_check(riddles):
 #selects the riddle and makes sure there are no repeat riddles
 def select_riddle(riddle_lst):
     riddle_num = random.randint(0, len(riddle_lst) - 1)
-    riddle = riddlelst.pop(riddle_num)
+    riddle = riddle_lst.pop(riddle_num)
     return riddle, riddle_num
-    
+
 def select_player(counter):
     pnum = ''
     if counter % 2 == 0:
@@ -18,40 +20,42 @@ def select_player(counter):
     else:
         pnum = '二'
     return pnum
-            
-            
-            
-def guess(pnum, riddle, riddle_num, player, Answers):
+
+
+
+def guess(pnum, riddle, riddle_num, Answers, counter):
     p1 = 0
     p2 = 0
+
     print('第%s個人猜' % pnum)
     print(riddle + ':')
     ans = input()
     if ans == Answers[riddle_num]:
         print('你猜對了！')
-        if player % 2 == 0:
-            p1 += 1
+        if counter % 2 == 0:
+            p1 = 1
         else:
-            p2 += 1
+            p2 = 1
         del Answers[riddle_num]
-        return False
+        return False, counter, p1, p2
 
     if ans == "skip":
         print("player%s has decided to skip" % pnum)
         if pnum == '一':
             print("第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
             confirm = input()
+
         else:
             print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
             confirm = input()
-            if confirm == "skip":
-                print("executing skip...")
-                return False     
+        if confirm == "skip":
+            print("executing skip...")
+            return False, counter
     else:
         print('你猜錯了！')
-        return counter + 1
-        
-                        
+        return True, counter + 1
+
+
 def winner(p1, p2):
     if p1 == p2:
         print('沒有人輸或贏')
@@ -59,8 +63,8 @@ def winner(p1, p2):
         print('第一個人贏了')
     else:
         print('第二個人贏了')
-            
-main():
+
+def main():
     sim_riddles = ['一月七日,猜一个字', '一加一,猜一字', '一半儿,猜一个字',
     '一字十三点,难在如何点,猜一个字', '一百减一,猜一个字', '一夜又一夜,猜一字',
     '一个人搬两个土,猜一个字', '一个礼拜,猜一个字', '一家十一口,猜一字',
@@ -76,34 +80,44 @@ main():
     pscore1 = 0
     pscore2 = 0
     counter = 0
+    ans = [0, 0, 0, 0]
     my_bool = True
-    
+    my_bool2 = True
+
+
+
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     while my_bool:
+        pscore1 += ans[2]
+        pscore2 += ans[3]
 
         riddle_val = select_riddle(sim_riddles)
         riddle_str = riddle_val[0]
         riddle_int = riddle_val[1]
-        
-        while my_bool2:
-            
-            player = select_player(counter)
-            guess(player, riddle_str, riddle_int, player)
-            
-        my_bool = end_game_check(sim_riddles)
-    winner()
-    
-if __name__ == "__main__":
-    
-    main()
-    
-    
-    
-    
 
-    
-    
-    
-    
-    
+        while my_bool2:
+
+            player = select_player(counter)
+            ans = guess(player, riddle_str, riddle_int, Answers, counter)
+            my_bool2 = ans[0]
+            counter = ans[1]
+
+        print('length')
+        print(len(sim_riddles))
+        my_bool = end_game_check(sim_riddles)
+    winner(pscore1, pscore2)
+
+
+
+if __name__ == '__main__':
+
+
+    main()
+
+
+
+
+
+
+
