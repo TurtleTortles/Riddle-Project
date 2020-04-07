@@ -61,9 +61,8 @@ while True:
                 if confirm == "skip":
                     print("executing skip...")
                     break
-                else:
-                    pass
-                   
+                    
+            
                 
             else:
                 print("player 1, type skip to confirm")
