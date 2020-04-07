@@ -1,13 +1,10 @@
 import random
 
-
-
 def end_game_check(riddles):
     if len(riddles) == 0:
         print('你都猜完了！')
         return False
-    else:
-        return True
+
 #selects the riddle and makes sure there are no repeat riddles
 def select_riddle(riddle_lst):
     riddle_num = random.randint(0, len(riddle_lst) - 1)
@@ -85,8 +82,6 @@ def main():
     my_bool = True
     my_bool2 = True
 
-
-
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     while my_bool:
@@ -109,10 +104,7 @@ def main():
         my_bool = end_game_check(sim_riddles)
     winner(pscore1, pscore2)
 
-
-
 if __name__ == '__main__':
-
 
     main()
 
