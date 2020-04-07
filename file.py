@@ -94,9 +94,8 @@ main():
         my_bool = end_game_check(sim_riddles)
     winner()
     
-if __main__ == '__name__':
+if __name__ == "__main__":
     
-
     main()
     
     
