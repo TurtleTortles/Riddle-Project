@@ -1,5 +1,23 @@
 import random
-import time
+
+
+
+def intro():
+    print('這是個猜謎語的遊戲')
+    print('我們有30個謎語')
+    print('')
+    print('如果你要繁體字打繁，如果你要簡體打簡')
+    lang = input()
+    while True:
+        if lang == '繁':
+            return 'trd'
+            break
+        elif lang == '簡':
+            return 'sim'
+            break
+        else:
+            print('請打繁或簡')
+
 
 
 def end_game_check(riddles):
@@ -70,6 +88,21 @@ def winner(p1, p2):
         print('第二個人贏了')
 
 def main():
+    trd_riddles = ['一月七日,猜一個字', '一加一,猜一字', '一半兒,猜一個字',
+    '一字十三點,難在如何點,猜一個字', '一百減一,猜一個字', '一夜又一夜,猜一字',
+    '一個人搬兩個土,猜一個字', '一個禮拜,猜一個字', '一家十一口,猜一字',
+    '一家有七口,種田種一畝,自己吃不夠,還養一條狗', '一根木棍,吊個方箱,一把梯子,搭在中央',
+    '一隻牛,猜一個字', '一隻狗四個口,猜一個字', '一一箭穿心,猜一字',
+    '一點一橫長,一撇到南洋,南洋有個人,只有一寸長', '一邊是水,一邊是山,猜一個字',
+    '一邊是紅,一邊是綠,一邊喜風,一邊喜雨', '七人八隻眼,猜一個字', '七人頭上長了草,猜一字',
+    '七十二小時,猜一個字', '王先生白小姐坐在石頭上', '九十九,猜一字', '九隻鳥,猜一個字',
+    '九號,猜一字', '九輛車,猜一個字', '四個人搬個木頭,猜一個字', '一人,猜一個字',
+    '一人一張口,口下長隻手,猜一字', '一人在內,猜一字', '一人挑兩小人,猜一字' ]
+    trd_Answers = ['脂', '王', '臼', '汁', '白', '多', '佳', '旨', '吉', '獸', '面', '生', '器', '必', '府', '汕', '秋', '貨', '花', '晶',
+    '碧', '白', '鳩', '旭', '軌', '傑', '大', '拿', '肉', '夾']
+
+
+
     sim_riddles = ['一月七日,猜一个字', '一加一,猜一字', '一半儿,猜一个字',
     '一字十三点,难在如何点,猜一个字', '一百减一,猜一个字', '一夜又一夜,猜一字',
     '一个人搬两个土,猜一个字', '一个礼拜,猜一个字', '一家十一口,猜一字',
@@ -88,14 +121,21 @@ def main():
     ans = [0, 0, 0, 0]
     my_bool = True
 
-    print('這是個猜謎語的遊戲')
-    print('我們有30個謎語')
+    words = intro()
+
+    if words == 'trd':
+        riddles = trd_riddles
+        Answers = trd_Answers
+    elif words == 'sim':
+        riddles = sim_riddles
+        Answers = sim_Answers
+
     while my_bool:
         my_bool2 = True
         pscore1 += ans[2]
         pscore2 += ans[3]
 
-        riddle_val = select_riddle(sim_riddles)
+        riddle_val = select_riddle(riddles)
         riddle_str = riddle_val[0]
         riddle_int = riddle_val[1]
 
@@ -105,7 +145,10 @@ def main():
             ans = guess(player, riddle_str, riddle_int, Answers, counter)
             my_bool2 = ans[0]
             counter = ans[1]
-        my_bool = end_game_check(sim_riddles)
+            print(my_bool2)
+        #print('length')
+        #print(len(riddles))
+        my_bool = end_game_check(riddles)
     winner(pscore1, pscore2)
 
 
