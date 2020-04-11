@@ -1,7 +1,6 @@
 import random
 
 
-
 def end_game_check(riddles):
     if len(riddles) == 0:
         print('你都猜完了！')
@@ -21,7 +20,6 @@ def select_player(counter):
     else:
         pnum = '二'
     return pnum
-
 
 
 def guess(pnum, riddle, riddle_num, Answers, counter):
@@ -50,6 +48,8 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
             print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
             confirm = input()
         if confirm == "skip":
+            print("the correct answer was", end = ' ')
+            print(Answers[riddle_num])
             print("executing skip...")
             return False, counter, 0, 0
     else:
@@ -84,9 +84,6 @@ def main():
     ans = [0, 0, 0, 0]
     my_bool = True
 
-
-
-
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     while my_bool:
@@ -111,7 +108,5 @@ def main():
     winner(pscore1, pscore2)
 
 
-
 if __name__ == '__main__':
-
     main()
