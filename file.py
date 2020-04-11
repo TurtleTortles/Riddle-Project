@@ -49,7 +49,7 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
             print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
             confirm = input()
         if confirm == "skip":
-            print("正確的答案是", end = ' ')
+            print("正確的答案是", end = '')
             print(Answers[riddle_num])
             time.sleep(0.5)
             print("執行跳過...")
