@@ -1,4 +1,5 @@
 import random
+import time
 
 
 def end_game_check(riddles):
@@ -48,9 +49,11 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
             print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
             confirm = input()
         if confirm == "skip":
-            print("the correct answer was", end = ' ')
+            print("正確的答案是", end = ' ')
             print(Answers[riddle_num])
-            print("executing skip...")
+            time.sleep(0.5)
+            print("執行跳過...")
+            time.sleep(0.5)
             return False, counter, 0, 0
     else:
         print('你猜錯了！')
