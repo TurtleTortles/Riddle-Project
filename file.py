@@ -51,6 +51,7 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
         if confirm == "skip":
             print("正確的答案是", end = '“')
             print(Answers[riddle_num], end = '"')
+            print("")
             time.sleep(0.5)
             print("執行跳過...")
             time.sleep(0.5)
@@ -104,9 +105,6 @@ def main():
             ans = guess(player, riddle_str, riddle_int, Answers, counter)
             my_bool2 = ans[0]
             counter = ans[1]
-            print(my_bool2)
-        print('length')
-        print(len(sim_riddles))
         my_bool = end_game_check(sim_riddles)
     winner(pscore1, pscore2)
 
