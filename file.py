@@ -7,6 +7,8 @@ def intro():
     print('我們有30個謎語')
     print('')
     print('如果你要繁體字打繁，如果你要簡體打簡')
+    print('if u want help, type instructiosn, if you want to see a list of all the special events, type events, if you want to see some tips and tricks, ttype tips;)
+    #still need to add input conditionals for the above print statement
     lang = input()
     while True:
         if lang == '繁':
