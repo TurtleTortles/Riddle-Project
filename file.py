@@ -27,6 +27,21 @@ def intro():
             print('請打繁或簡')
 
 
+def create_events(events):          
+    for i in range(75):
+       events.append('n')
+    for i in range(5):
+       events.append('-2 pts opp')
+    for i in range(8):
+       events.append('-2 pts')
+    for i in range(7):
+       events.append('lose turn')
+    for i in range(2):
+       events.append('give ans')
+    for i in range(3):
+       events.append('+5 pts')
+    for i in range(5):
+       events.append('+1 pts opp')          
 
 def end_game_check(riddles):
     if len(riddles) == 0:
@@ -128,9 +143,12 @@ def main():
     counter = 0
     ans = [0, 0, 0, 0]
     my_bool = True
-
+    spec_events = []
+          
+          
+    create_events(spec_events)
     words = intro()
-
+    
     if words == 'trd':
         riddles = trd_riddles
         Answers = trd_Answers
