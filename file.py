@@ -7,7 +7,7 @@ def intro():
     print('我們有30個謎語')
     print('')
     print('如果你要繁體字打繁，如果你要簡體打簡')
-    print('如果你要幫忙，打instructions, 如果你想要看到隨機事件，打events, 何如果你想要tips)
+    print('如果你要幫忙，打instructions, 如果你想要看到隨機事件，打events, 何如果你想要tips')
     #FIX ABOVE PRINT STATMENT CHINESE TIPS 
     lang = input()
     while True:
