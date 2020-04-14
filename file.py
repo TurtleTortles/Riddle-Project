@@ -26,6 +26,20 @@ def intro():
         else:
             print('請打繁或簡')
 
+def choose_game():
+    game = input()
+    var = "empty"
+    while True:
+        if game == "riddle" or "riddles" or "mi yu":
+            var = "rid"
+            break
+        elif game == "proverb" or "proverbs" or "cheng yu":
+            var = "pro"
+            break
+        else:
+            print("empty for now")
+            
+
 
 def create_events(events):          
     for i in range(75):
