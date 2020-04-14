@@ -2,15 +2,49 @@ import random
 import time
 
 
+class eventclass:
+    def __init__(self, the_event, riddle_num):
+        self.the_event = the_event
+        self.riddle_num = riddle_num
+    def give_ans(self):
+        if self.the_event == 'give ans':
+            print(self.riddle_num)
+    def min2opp(self, oppscore):
+        if self.the_event == '-2opp':
+            return oppscore - 2
+    def min2(self, my_score):
+        if self.the_event == '-2':
+            return my_score - 3
+    def free_ans(self, riddle_ans):
+        if self.the_event == 'give ans':
+            print(riddle_ans)
+    def plus5(self, myscore):
+        if self.the_event == '+5 points':
+            return myscore + 4
+    def plus1opp(self, oppscore):
+        if self.the_event == '+1opp':
+            return oppscore + 1
+def choose_game():
+    game = input()
+    var = "empty"
+    while True:
+        if game == "riddle" or "riddles" or "mi yu":
+            var = "rid"
+            break
+        elif game == "proverb" or "proverbs" or "cheng yu":
+            var = "pro"
+            break
+        else:
+            print("empty for now")
 def intro():
     print('這是個猜謎語的遊戲')
     print('我們有30個謎語')
     print('')
     print('如果你要繁體字打繁，如果你要簡體打簡')
     print('如果你要幫忙，打instructions, 如果你想要看到隨機事件，打events, 何如果你想要tips')
-    #FIX ABOVE PRINT STATMENT CHINESE TIPS 
-    lang = input()
+    #FIX ABOVE PRINT STATMENT CHINESE TIPS
     while True:
+        lang = input()
         if lang == '繁':
             return 'trd'
             break
@@ -26,36 +60,20 @@ def intro():
         else:
             print('請打繁或簡')
 
-def choose_game():
-    game = input()
-    var = "empty"
-    while True:
-        if game == "riddle" or "riddles" or "mi yu":
-            var = "rid"
-            break
-        elif game == "proverb" or "proverbs" or "cheng yu":
-            var = "pro"
-            break
-        else:
-            print("empty for now")
-            
-
-
-def create_events(events):          
-    for i in range(75):
-       events.append('n')
+def create_event(events):
+    for i in range(65):
+        events.append('n')
+    for i in range(10):
+        events.append('-2opp')
     for i in range(5):
-       events.append('-2 pts opp')
-    for i in range(8):
-       events.append('-2 pts')
-    for i in range(7):
-       events.append('lose turn')
-    for i in range(2):
-       events.append('give ans')
-    for i in range(3):
-       events.append('+5 pts')
+        events.append('-2')
     for i in range(5):
-       events.append('+1 pts opp')          
+        events.append('give ans')
+    for i in range(5):
+        events.append('+5 pts')
+    for i in range(10):
+        events.append('+1opp')
+
 
 def end_game_check(riddles):
     if len(riddles) == 0:
@@ -150,19 +168,30 @@ def main():
     '七十二小时,猜一个字', '王先生白小姐坐在石头上', '九十九,猜一字', '九只鸟,猜一个字',
     '九号,猜一字', '九辆车,猜一个字', '四个人搬个木头,猜一个字', '一人,猜一个字',
     '一人一张口,口下长只手,猜一字', '一人在内,猜一字', '一人挑两小人,猜一字' ]
-    Answers = ['脂', '王', '臼', '汁', '白', '多', '佳', '旨', '吉', '兽', '面', '生', '器', '必', '府', '汕', '秋', '货', '花', '晶',
+    sim_Answers = ['脂', '王', '臼', '汁', '白', '多', '佳', '旨', '吉', '兽', '面', '生', '器', '必', '府', '汕', '秋', '货', '花', '晶',
     '碧', '白', '鸠', '旭', '轨', '杰', '大', '拿', '肉', '夹']
+    spec_event = []
+    chengyu_riddles = ['蛇有腳', '一隻青蛙在井裡', '有個人給牛彈琴', '一個人每次等在一個地方抓兔子', '兩個東西是相反的',
+    '有個人用刀刻船來記得他的東西掉在哪裡', '有個人拔他的植物', '羊死了因為牢有洞', '有個人把玲打碎來偷玲', '有個人以為他的杯子有蛇',
+    '一個人用一塊石頭打兩隻鳥', '一個人只用弓的聲音讓鳥掉下來', '一個人把馬和老虎換了', '用一個東西拿到兩個好處', '很多很多的人']
+    chengyu_Answers = ['畫蛇添足', '井底之蛙', '對牛彈琴', '守株待兔', '自相矛盾', '刻舟求劍', '拔苗助長', '亡羊補牢', '掩耳盗铃',
+    '杯弓蛇影', '一石二鳥', '驚弓之鳥', '馬馬虎虎', '一舉兩得', '人山人海']
+
+
+
+
     pscore1 = 0
     pscore2 = 0
     counter = 0
     ans = [0, 0, 0, 0]
     my_bool = True
-    spec_events = []
-          
-          
-    create_events(spec_events)
+
+    create_events(spec_event)
+
+
+
     words = intro()
-    
+
     if words == 'trd':
         riddles = trd_riddles
         Answers = trd_Answers
@@ -171,6 +200,8 @@ def main():
         Answers = sim_Answers
 
     while my_bool:
+        my_event = random.choice(spec_event)
+
         my_bool2 = True
         pscore1 += ans[2]
         pscore2 += ans[3]
@@ -180,12 +211,15 @@ def main():
         riddle_int = riddle_val[1]
 
         while my_bool2:
+            event_ob = eventclass(my_event, riddle_int)
+            event_ob.free_ans(riddle_str)
 
             player = select_player(counter)
             ans = guess(player, riddle_str, riddle_int, Answers, counter)
             my_bool2 = ans[0]
             counter = ans[1]
-            print(my_bool2)
+
+            #print(my_bool2)
         #print('length')
         #print(len(riddles))
         my_bool = end_game_check(riddles)
@@ -194,3 +228,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
