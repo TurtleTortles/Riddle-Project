@@ -95,7 +95,18 @@ def select_player(counter):
         pnum = '二'
     return pnum
 
-
+def timer():
+    counter = 0
+    remaining = 60
+    print("the round starts now, you have 60 seconds to answer")
+    while counter != 4:
+        time.sleep(15)
+        remaining -= 15
+        print("you have", end = " ")
+        print(remaining, end = " ")
+        print("seconds remaining")
+   print("you ran out of time, next person")
+   #connect this to a break statement for main while loop
 def guess(pnum, riddle, riddle_num, Answers, counter):
     p1 = 0
     p2 = 0
