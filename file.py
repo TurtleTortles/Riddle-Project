@@ -3,15 +3,17 @@ import time
 
 
 class eventclass:
-    def __init__(self, the_event, riddle_num):
+    def __init__(self, the_event, answer, riddle_num):
         self.the_event = the_event
         self.riddle_num = riddle_num
+        self.answer = answer
+
     def give_ans(self):
         if self.the_event == 'give ans':
             print('')
-            print('這是答案：')
-            print()
-            print(self.riddle_num)
+            print('答案是：')
+            print(self.answer[self.riddle_num])
+
     def min2opp(self, p1score, p2score, counter):
         if self.the_event == '-2opp':
             print('')
@@ -40,7 +42,7 @@ class eventclass:
             else:
                 return p1score, p2score + 4
         else:
-            return myscore
+            return p1score, p2score
     def plus1opp(self, p1score, p2score, counter):
         if self.the_event == '+1opp':
             if counter % 2 == 0:
@@ -75,10 +77,10 @@ def intro():
         lang = input()
         if lang == '繁':
             return 'trd'
-            break
+
         elif lang == '簡':
             return 'sim'
-            break
+            
         elif lang == 'instructions':
             print('pass')
         elif lang == 'events':
@@ -88,12 +90,12 @@ def intro():
         else:
             print('請打繁或簡')
 
-def create_event(events):
-    for i in range(65):
+def create_events(events):
+    for i in range(60):
         events.append('n')
     for i in range(10):
         events.append('-2opp')
-    for i in range(5):
+    for i in range(10):
         events.append('-2')
     for i in range(5):
         events.append('give ans')
@@ -172,7 +174,7 @@ def timer():
         print("you have", end = " ")
         print(remaining, end = " ")
         print("seconds remaining")
-   print("you ran out of time, next person")
+    print("you ran out of time, next person")
    #connect this to a break statement for main while loop
 
 def winner(p1, p2):
@@ -252,8 +254,10 @@ def main():
         riddle_int = riddle_val[1]
 
         while my_bool2:
-            event_ob = eventclass(my_event, riddle_int)
-            event_ob.free_ans(riddle_str)
+            #print('event is:')
+            #print(my_event)
+            event_ob = eventclass(my_event, Answers, riddle_int)
+            event_ob.give_ans()
 
             player = select_player(counter)
             ans = guess(player, riddle_str, riddle_int, Answers, counter)
