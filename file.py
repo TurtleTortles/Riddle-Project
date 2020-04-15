@@ -8,30 +8,58 @@ class eventclass:
         self.riddle_num = riddle_num
     def give_ans(self):
         if self.the_event == 'give ans':
+            print('')
+            print('這是答案：')
+            print()
             print(self.riddle_num)
-    def min2opp(self, oppscore):
+    def min2opp(self, p1score, p2score, counter):
         if self.the_event == '-2opp':
-            return oppscore - 2
-    def min2(self, my_score):
+            print('')
+            print('對手扣了兩分！')
+            if counter % 2 == 0:
+                return p2score - 2, p1score
+            else:
+                return p2score, p1score - 2
+        else:
+            return p1score, p2score
+
+    def min2(self, p1score, p2score, counter):
         if self.the_event == '-2':
-            return my_score - 3
-    def free_ans(self, riddle_ans):
-        if self.the_event == 'give ans':
-            print(riddle_ans)
-    def plus5(self, myscore):
+            print('你扣了兩分')
+            if counter % 2 == 0:
+                return p1score - 3, p2score
+            else:
+                return p1score, p2score - 3
+        else:
+            return p1score, p2score
+
+    def plus5(self, p1score, p2score, counter):
         if self.the_event == '+5 points':
-            return myscore + 4
-    def plus1opp(self, oppscore):
+            if counter % 2 == 0:
+                return p1score + 4, p2score
+            else:
+                return p1score, p2score + 4
+        else:
+            return myscore
+    def plus1opp(self, p1score, p2score, counter):
         if self.the_event == '+1opp':
-            return oppscore + 1
+            if counter % 2 == 0:
+                return p1score, p2score + 1
+            else:
+                return p1score + 1, p2score
+        else:
+            return p1score, p2score
+
+
 def choose_game():
-    game = input()
-    var = "empty"
+
+    var = ""
     while True:
-        if game == "riddle" or "riddles" or "mi yu":
+        game = input()
+        if game == "riddle" or "riddles" or "字謎":
             var = "rid"
             break
-        elif game == "proverb" or "proverbs" or "cheng yu":
+        elif game == "proverb" or "proverbs" or "成語謎語":
             var = "pro"
             break
         else:
@@ -95,18 +123,7 @@ def select_player(counter):
         pnum = '二'
     return pnum
 
-def timer():
-    counter = 0
-    remaining = 60
-    print("the round starts now, you have 60 seconds to answer")
-    while counter != 4:
-        time.sleep(15)
-        remaining -= 15
-        print("you have", end = " ")
-        print(remaining, end = " ")
-        print("seconds remaining")
-   print("you ran out of time, next person")
-   #connect this to a break statement for main while loop
+
 def guess(pnum, riddle, riddle_num, Answers, counter):
     p1 = 0
     p2 = 0
@@ -144,6 +161,19 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
         print('你猜錯了！')
         return True, counter + 1
 
+
+def timer():
+    counter = 0
+    remaining = 60
+    print("the round starts now, you have 60 seconds to answer")
+    while counter != 4:
+        time.sleep(15)
+        remaining -= 15
+        print("you have", end = " ")
+        print(remaining, end = " ")
+        print("seconds remaining")
+   print("you ran out of time, next person")
+   #connect this to a break statement for main while loop
 
 def winner(p1, p2):
     if p1 == p2:
@@ -229,8 +259,15 @@ def main():
             ans = guess(player, riddle_str, riddle_int, Answers, counter)
             my_bool2 = ans[0]
             counter = ans[1]
+            if my_bool2 == False:
+                pscore1, pscore2 = event_ob.min2opp(pscore1, pscore2, counter)
+                pscore1, pscore2 = event_ob.min2(pscore1, pscore2, counter)
+                pscore1, pscore2 = event_ob.plus5(pscore1, pscore2, counter)
+                pscore1, pscore2 = event_ob.plus1opp(pscore1, pscore2, counter)
 
-            #print(my_bool2)
+
+
+        #print(my_bool2)
         #print('length')
         #print(len(riddles))
         my_bool = end_game_check(riddles)
