@@ -52,20 +52,6 @@ class eventclass:
         else:
             return p1score, p2score
 
-
-def choose_game():
-
-    var = ""
-    while True:
-        game = input()
-        if game == "riddle" or "riddles" or "字謎":
-            var = "rid"
-            break
-        elif game == "proverb" or "proverbs" or "成語謎語":
-            var = "pro"
-            break
-        else:
-            print("empty for now")
 def intro():
     print('這是個猜謎語的遊戲')
     print('')
@@ -145,16 +131,16 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
     print(riddle + ':')
     counter = 0
     remaining = 0
-    print("the round starts now, you have 60 seconds to answer")
+    print("開始！你有60秒來回答！")
     ans = input()
     starttime = time.time()
     totaltime = 0
     while totaltime < 60:
         totaltime = time.time() - starttime
         if totaltime == 30 or 30.1 or 30.2 or 30.3:
-            print("you have 30 seconds remaining")
+            print("你只剩下30秒")
         elif totaltime == 45 or 45.1 or 45.2 or 45.3:
-            print("you have 15 seconds remaining, better hurry up!")
+            print("你剩下15秒！你應該要快一點！")
         if ans == Answers[riddle_num]:
             if i == 0:
                 i += 1
