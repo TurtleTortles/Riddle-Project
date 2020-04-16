@@ -144,12 +144,12 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
     print(riddle + ':')
     counter = 0
     remaining = 0
-    ans = input()
     print("the round starts now, you have 60 seconds to answer")
+    ans = input()
     starttime = time.time()
     totaltime = 0
     while totaltime < 60:
-        totaltime = time.time() - starttime()
+        totaltime = time.time() - starttime
         if totaltime == 30 or 30.1 or 30.2 or 30.3:
             print("you have 30 seconds remaining")
         elif totaltime == 45 or 45.1 or 45.2 or 45.3:
@@ -181,7 +181,7 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
         else:
             print('你猜錯了！')
             return True, counter + 1
-    
+
 
 def winner(p1, p2):
     if p1 == p2:
@@ -309,7 +309,7 @@ def main():
 
 
     words = intro()
-
+    print(words)
     if words == 'trd':
         ch_set = 0
     elif words == 'sim':
@@ -322,7 +322,7 @@ def main():
         else:
             riddles = sim_chengyu_rid
             Answers = sim_chengyu_ans
-    elif riddle_type == '字謎':
+    elif riddle_type == '字':
         if ch_set == 0:
             riddles = trd_riddles
             Answers = trd_Answers
