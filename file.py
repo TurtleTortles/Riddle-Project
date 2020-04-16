@@ -68,7 +68,6 @@ def choose_game():
             print("empty for now")
 def intro():
     print('這是個猜謎語的遊戲')
-    print('我們有30個謎語')
     print('')
     print('如果你要繁體字打繁，如果你要簡體打簡')
 
@@ -163,13 +162,12 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
             print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
             confirm = input()
         if confirm == "skip":
-            print("正確的答案是", end = '“')
-            print(Answers[riddle_num], end = '"')
-            print("")
             time.sleep(0.5)
             print("執行跳過...")
             time.sleep(0.5)
             return False, counter, 0, 0
+        else:
+            return True, counter + 1
     else:
         print('你猜錯了！')
         return True, counter + 1
@@ -373,3 +371,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
