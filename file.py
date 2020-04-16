@@ -139,7 +139,8 @@ def select_player(counter):
 def guess(pnum, riddle, riddle_num, Answers, counter):
     p1 = 0
     p2 = 0
-
+    i = 0
+    
     print('第%s個人猜' % pnum)
     print(riddle + ':')
     counter = 0
@@ -155,13 +156,21 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
         elif totaltime == 45 or 45.1 or 45.2 or 45.3:
             print("you have 15 seconds remaining, better hurry up!")
         if ans == Answers[riddle_num]:
-            print('你猜對了！')
-            if counter % 2 == 0:
-                p1 = 1
+            if i == 0:
+                i += 1
+                countinue
+            if totaltime != 0:
+                
+                print('你猜對了！')
+                if counter % 2 == 0:
+                    p1 = 1
+                else:
+                    p2 = 1
+                del Answers[riddle_num]
+                return False, counter, p1, p2
             else:
-                p2 = 1
-            del Answers[riddle_num]
-            return False, counter, p1, p2
+                print('你用完了你的時間！')
+                return True, counter + 1
         if ans == "skip":
             print("第%s選擇跳過這個問題" % pnum)
             if pnum == '一':
