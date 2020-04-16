@@ -142,49 +142,46 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
 
     print('第%s個人猜' % pnum)
     print(riddle + ':')
-    ans = input()
-    if ans == Answers[riddle_num]:
-        print('你猜對了！')
-        if counter % 2 == 0:
-            p1 = 1
-        else:
-            p2 = 1
-        del Answers[riddle_num]
-        return False, counter, p1, p2
-
-    if ans == "skip":
-        print("第%s選擇跳過這個問題" % pnum)
-        if pnum == '一':
-            print("第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
-            confirm = input()
-
-        else:
-            print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
-            confirm = input()
-        if confirm == "skip":
-            time.sleep(0.5)
-            print("執行跳過...")
-            time.sleep(0.5)
-            return False, counter, 0, 0
-        else:
-            return True, counter + 1
-    else:
-        print('你猜錯了！')
-        return True, counter + 1
-
-
-def timer():
     counter = 0
-    remaining = 60
+    remaining = 0
+    ans = input()
     print("the round starts now, you have 60 seconds to answer")
-    while counter != 4:
-        time.sleep(15)
-        remaining -= 15
-        print("you have", end = " ")
-        print(remaining, end = " ")
-        print("seconds remaining")
-    print("you ran out of time, next person")
-   #connect this to a break statement for main while loop
+    starttime = time.time()
+    totaltime = 0
+    while totaltime < 60:
+        totaltime = time.time() - starttime()
+        if totaltime == 30 or 30.1 or 30.2 or 30.3:
+            print("you have 30 seconds remaining")
+        elif totaltime == 45 or 45.1 or 45.2 or 45.3:
+            print("you have 15 seconds remaining, better hurry up!")
+        if ans == Answers[riddle_num]:
+            print('你猜對了！')
+            if counter % 2 == 0:
+                p1 = 1
+            else:
+                p2 = 1
+            del Answers[riddle_num]
+            return False, counter, p1, p2
+        if ans == "skip":
+            print("第%s選擇跳過這個問題" % pnum)
+            if pnum == '一':
+                print("第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
+                confirm = input()
+
+            else:
+                print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
+                confirm = input()
+            if confirm == "skip":
+                time.sleep(0.5)
+                print("執行跳過...")
+                time.sleep(0.5)
+                return False, counter, 0, 0
+            else:
+                return True, counter + 1
+        else:
+            print('你猜錯了！')
+            return True, counter + 1
+    
 
 def winner(p1, p2):
     if p1 == p2:
