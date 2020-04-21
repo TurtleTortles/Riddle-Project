@@ -135,12 +135,19 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
     ans = input()
     starttime = time.time()
     totaltime = 0
+    timecounter = 0
     while totaltime < 60:
         totaltime = time.time() - starttime
-        if totaltime == 30 or 30.1 or 30.2 or 30.3:
+        if totaltime >= 15 and timecounter == 0:
             print("你只剩下30秒")
-        elif totaltime == 45 or 45.1 or 45.2 or 45.3:
+            timecounter += 1
+        elif totaltime >= 30 and timecounter == 1:
             print("你剩下15秒！你應該要快一點！")
+            timecounter += 1
+        elif totaltime >= 45 and timecounter == 2:
+            print("pass")
+            timecounter += 1
+        
         if ans == Answers[riddle_num]:
             if i == 0:
                 i += 1
