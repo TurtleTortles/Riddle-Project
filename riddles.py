@@ -131,45 +131,20 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
     print(riddle + ':')
     counter = 0
     remaining = 0
-    print("開始！你有60秒來回答！")
     ans = input()
-    starttime = time.time()
-    totaltime = 0
-    timecounter = 0
-    while totaltime < 60:
-        totaltime = time.time() - starttime
-        if totaltime >= 15 and timecounter == 0:
-            print("你只剩下30秒")
-            timecounter += 1
-        elif totaltime >= 30 and timecounter == 1:
-            print("你剩下15秒！你應該要快一點！")
-            timecounter += 1
-        elif totaltime >= 45 and timecounter == 2:
-            print("pass")
-            timecounter += 1
-        
-        if ans == Answers[riddle_num]:
-            if i == 0:
-                i += 1
-                countinue
-            if totaltime != 0:
-                
-                print('你猜對了！')
-                if counter % 2 == 0:
-                    p1 = 1
-                else:
-                    p2 = 1
-                del Answers[riddle_num]
-                return False, counter, p1, p2
-            else:
-                print('你用完了你的時間！')
-                return True, counter + 1
-        if ans == "skip":
+    if ans == Answers[riddle_num]:
+          print('你猜對了！')
+          if counter % 2 == 0:
+                p1 = 1
+          else:
+                p2 = 1
+          del Answers[riddle_num]
+          return False, counter, p1, p2
+    if ans == "skip":
             print("第%s選擇跳過這個問題" % pnum)
             if pnum == '一':
                 print("第二個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter")
                 confirm = input()
-
             else:
                 print('第一個人，寫skip如果你要跳過這個問題，如果你不要跳過打enter')
                 confirm = input()
@@ -180,9 +155,9 @@ def guess(pnum, riddle, riddle_num, Answers, counter):
                 return False, counter, 0, 0
             else:
                 return True, counter + 1
-        else:
-            print('你猜錯了！')
-            return True, counter + 1
+    else:
+        print('你猜錯了！')
+        return True, counter + 1
 
 
 def winner(p1, p2):
@@ -240,14 +215,12 @@ def main():
     instruction = [
     '''這個謎語的遊戲就是一個跟你和另外一個人比誰可以先猜謎語的答案。第一個人會先猜。如果他猜對了，他就得到一分。
 如果他沒大隊，另外一個人就可以猜。遊戲開始的時候，你就可以選如果你要玩這個遊戲用繁體或簡體。如果你先要用繁體玩，打繁。
-如果你想要用簡體玩，打簡。你選完以後，遊戲就開始。遊戲開始的時候，你就可以看到密語和可以開始猜一猜。小心！
-你只有60秒猜。每一個15秒，你會看到你還有幾秒可以用來猜。你必須在時間用完前回答，否則你的輪會被跳過！
+如果你想要用簡體玩，打簡。你選完以後，遊戲就開始。遊戲開始的時候，你就可以看到密語和可以開始猜一猜。
 如果兩個人都覺得這個謎語太難，你們可以打skip來跳過那個謎語。你猜對的時候你會得到一分。謎語都猜完的時候，有最多的分數的人會贏。
 有的時候，特別活動會發生。如果你打events你會看到每個特別活動。''',
     '''这个谜语的游戏就是一个跟你和另外一个人比谁可以先猜谜语的答案。第一个人会先猜。如果他猜对了，他就得到一分。
 如果他没大队，另外一个人就可以猜。游戏开始的时候，你就可以选如果你要玩这个游戏用繁体或简体。如果你先要用繁体玩，打——。
-如果你想要用简体玩，打——。你选完以后，游戏就开始。游戏开始的时候，你就可以看到密语和可以开始猜一猜。小心！
-你只有60秒猜。每一个15秒，你会看到你还有几秒可以用来猜。你必须在时间用完前回答，否则你的轮会被跳过！
+如果你想要用简体玩，打——。你选完以后，游戏就开始。游戏开始的时候，你就可以看到密语和可以开始猜一猜。
 如果两个人都觉得这个谜语太难，你们可以打skip来跳过那个谜语。你猜对的时候你会得到一分。谜语都猜完的时候，有最多的分数的人会赢。
 有的时候，特别活动会发生。如果你打events你会看到每个特别活动。''']
 
